@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <title>NodeJS Chat</title>
+</head>
+<body>
+
+<div id="app">
+
+    <div class="chat">
+        <div class="chat-users collection">
+            <a
+                class="collection-item"
+                v-for="u in users"
+                :class="{'active': u.id === user.id}"
+            >
+                {{u.name}}
+            </a>
+        </div>
+        <div class="chat-messages" ref="messages">
+            <ul class="messages">
+                <my-component class="message" 
+					v-for="u in messages" 
+					:class="{'owner': u.id === user.id}"
+					:text = "u.text"
+					:name = "u.name"
+					:link = "u.link"
+					:time = "getTime"
+				> 
+				</my-component>
+            </ul>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="input-field">
+            <input
+                type="text"
+                placeholder="Type your message..."
+                v-model.trim="message"
+                autocomplete="false"
+                @keydown.enter="sendMessage"
+            >
+        </div>
+        <button
+            class="btn"
+            @click="sendMessage"
+            :disabled="message.length === 0"
+        >Send</button>
+		<button
+            class="btn"
+            @click="invite"
+        >Invite</button>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "node-chat",
+  "version": "1.0.0",
+  "description": "chat on nodejs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Golub Dmitriy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
